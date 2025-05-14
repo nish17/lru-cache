@@ -8,12 +8,12 @@ public:
   int value;
   Node *prev;
   Node *next;
-  Node(int key, int value, Node *prev, Node *next)
+  Node(int key, int value)
   {
     this->key = key;
     this->value = value;
-    this->prev = prev;
-    this->next = next;
+    this->prev = nullptr;
+    this->next = nullptr;
   }
 };
 //          head      MRU               LRU      tail
@@ -57,17 +57,16 @@ private:
 
     previousNode->next = nextNode;
     nextNode->prev = previousNode;
-
-    // delete node;
   }
 
 public:
   LRUCache(int capacity)
   {
     this->capacity = capacity;
-    head = new Node(-1, -1, NULL, NULL);
-    tail = new Node(-1, -1, head, NULL);
+    head = new Node(-1, -1);
+    tail = new Node(-1, -1);
     head->next = tail;
+    tail->prev = head;
   }
 
   int get(int key)
@@ -102,11 +101,14 @@ public:
       cout << "max capacity reached\n";
       // remove the least recently used node
       // then add the new node
-      removeNode(tail->prev);
+      Node *lruNode = tail->prev;
+      removeNode(lruNode);
+      map.erase(lruNode->key);
+      delete lruNode;
     }
 
     // create and add the new node to the linkedlist
-    Node *newNode = new Node(key, value, NULL, NULL);
+    Node *newNode = new Node(key, value);
     map[key] = newNode;
     addNode(newNode);
     printDLL(head);
