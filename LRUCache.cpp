@@ -19,18 +19,6 @@ public:
 //          head      MRU               LRU      tail
 // NULL <-{-1, -1}<->{3, 3}<->{2, 2}<->{1,1}<->{-1, -1} -> NULL
 
-void printDLL(Node *head)
-{
-  Node *temp = head;
-  cout << "null ";
-  while (temp != NULL)
-  {
-    cout << "<-{" << temp->key << "," << temp->value << "}->" << "  ";
-    temp = temp->next;
-  }
-  cout << " null" << endl;
-}
-
 class LRUCache
 {
 private:
@@ -76,7 +64,6 @@ public:
       Node *existingNode = map[key];
       removeNode(existingNode);
       addNode(existingNode);
-      printDLL(head);
       return existingNode->value;
     }
     return -1;
@@ -93,12 +80,10 @@ public:
       existingNode->value = value;
       removeNode(existingNode);
       addNode(existingNode);
-      printDLL(head);
       return;
     }
     if (map.size() == capacity)
     {
-      cout << "max capacity reached\n";
       // remove the least recently used node
       // then add the new node
       Node *lruNode = tail->prev;
@@ -111,7 +96,6 @@ public:
     Node *newNode = new Node(key, value);
     map[key] = newNode;
     addNode(newNode);
-    printDLL(head);
   }
 };
 
