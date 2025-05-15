@@ -17,15 +17,6 @@ Design and implement an **In-Memory Least Recently Used (LRU) Cache** that suppo
 
 To ensure **O(1)** time complexity for both `get` and `put` operations, the solution uses:
 
-### 🧩 Visual Representation
-
-Here’s an example of a 3-element LRU cache:
-
-```cpp
-//          head      MRU               LRU      tail
-// NULL <-{-1, -1}<->{3, 3}<->{2, 2}<->{1, 1}<->{-1, -1} -> NULL
-```
-
 ### 1. **Doubly Linked List (DLL)**  
 To store the order of usage:  
 - The **most recently used** node is moved to the front (right after the dummy `head`).
@@ -35,6 +26,15 @@ To store the order of usage:
 ### 2. **Hash Map (`unordered_map<int, Node*>`)**  
 To allow `O(1)` access to any node by key.  
 Maps a key to its corresponding node in the DLL.
+
+### 🧩 Visual Representation
+
+Here’s an example of a 3-element LRU cache:
+
+```cpp
+//          head      MRU               LRU      tail
+// NULL <-{-1, -1}<->{3, 3}<->{2, 2}<->{1, 1}<->{-1, -1} -> NULL
+```
 
 ---
 
