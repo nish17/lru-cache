@@ -78,3 +78,15 @@ Here’s an example of a 3-element LRU cache:
 ```bash
 g++ -std=c++17 -o LRUCache LRUCache.cpp
 ./LRUCache
+```
+
+## 🌐 Run it Online (No Setup Needed)
+You can run and test the code directly here:
+
+👉 Try on OnlineGDB : https://onlinegdb.com/PoOZ_ak1r
+
+This link includes a sample main() function that demonstrates:
+
+- put() and get() operations
+- Eviction of least recently used items
+- Console outputs with expected values
